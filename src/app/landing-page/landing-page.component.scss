@@ -1,0 +1,19 @@
+.landing {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;          
+  text-align: center;
+}
+
+.logo {
+  width: 600px;
+  margin: 30px 0;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+}

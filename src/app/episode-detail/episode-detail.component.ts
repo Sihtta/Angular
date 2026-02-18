@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EpisodesService } from '../episodes.service';
+import { EpisodesService } from '../services/episodes.service';
 
 @Component({
   selector: 'app-episode-detail',

@@ -1,3 +1,12 @@
-<header>
-  <h1>La saga Starwars</h1>
+<header class="header">
+  <h1 class="title">La saga Starwars</h1>
+
+  <nav class="nav">
+    <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+    <a routerLink="/episodes" routerLinkActive="active">
+      Episodes
+    </a>
+  </nav>
 </header>
