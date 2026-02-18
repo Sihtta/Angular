@@ -1,27 +1,7 @@
-<div class="movie-card" [ngClass]="{ likedCard: episode.liked }">
-  <h2 class="title">{{ episode.titre | uppercase }}</h2>
-
-  <p class="meta">
-    {{ episode.annee | date:'yyyy' }} · {{ episode.duree }} ·
-    Note IMDb : {{ episode.note | number:'1.1-1' }}/10 ·
-
-    <ng-container *ngIf="episode.userNote !== undefined">
-      Note spectateurs :
-      <span *ngFor="let d of (episode.userNote | spectatorDots:5)">
-  {{ d === 'full' ? '🌕' : d === 'half' ? '🌓' : '🌑' }}
-</span>
-
-    </ng-container>
-  </p>
+<div class="movie-card">
+  <h2 class="title">{{ episode.titre }}</h2>
 
   <img class="poster" [src]="episode.affiche" [alt]="episode.titre" />
 
-  <p class="synopsis">{{ episode.synopsis }}</p>
-
-  <p class="meta"><strong>Réalisateur :</strong> {{ episode.realisateur }}</p>
-  <p class="meta"><strong>Acteurs :</strong> {{ episode.casting.join(', ') }}</p>
-
-  <button type="button" class="like-btn" (click)="toggleLike()">
-    {{ episode.liked ? 'Unlike' : 'Like' }} · {{ likes }}
-  </button>
+  <a class="details-btn" [routerLink]="['/episodes', episode.id]">Détails</a>
 </div>

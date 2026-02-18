@@ -71,17 +71,29 @@ export class EpisodesService {
     return this.episodes;
   }
 
-  getEpisodeById(id: number): Episode | undefined {
-    return this.episodes.find(e => e.id === id);
+  getEpisodeById(episodeId: number): Episode {
+    const episode = this.episodes.find(e => e.id === episodeId);
+
+    if (!episode) {
+      throw new Error('Episode not found!');
+    } else {
+      return episode;
+    }
   }
 
-  likeEpisodeById(id: number): void {
-    const ep = this.getEpisodeById(id);
-    if (!ep) return;
-    ep.liked = !ep.liked;
+  likeEpisodeById(episodeId: number, likeType: 'like' | 'unlike'): void {
+    const episode = this.getEpisodeById(episodeId);
+
+    if (likeType === 'like') {
+      episode.liked = true;
+    } else {
+      episode.liked = false;
+    }
   }
 
-  getLikes(ep: Episode): number {
-    return ep.likesBase + (ep.liked ? 1 : 0);
+  getLikesById(episodeId: number): number {
+    const episode = this.getEpisodeById(episodeId);
+    return episode.likesBase + (episode.liked ? 1 : 0);
   }
+
 }

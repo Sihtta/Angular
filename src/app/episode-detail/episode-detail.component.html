@@ -1,24 +1,39 @@
-<div class="movie-card" *ngIf="episode">
-  <h2 class="title">{{ episode.titre }}</h2>
+<ng-container *ngIf="episode; else notFound">
+  <div class="detail-container">
+    <div class="movie-card" [ngClass]="{ likedCard: episode.liked }">
 
-  <p class="infos">
-    {{ episode.annee }} · {{ episode.duree }} · note IMDb : {{ episode.note }}
-  </p>
+      <div class="back-container">
+        <button class="back-btn" routerLink="/episodes">Back</button>
+      </div>
 
-  <img class="poster" [src]="episode.affiche" [alt]="episode.titre" />
+      <h2 class="title">{{ episode.titre | uppercase }}</h2>
 
-  <p class="synopsis">{{ episode.synopsis }}</p>
+    <p class="meta">
+      {{ episode.annee | date:'yyyy' }} · {{ episode.duree }} ·
+      Note IMDb : {{ episode.note | number:'1.1-1' }}/10 ·
+      <ng-container *ngIf="episode.userNote !== undefined">
+        Note spectateurs :
+        <span *ngFor="let d of (episode.userNote | spectatorDots:5)">
+          {{ d === 'full' ? '🌕' : d === 'half' ? '🌓' : '🌑' }}
+        </span>
+      </ng-container>
+    </p>
 
-  <p class="meta"><strong>Réalisateur :</strong> {{ episode.realisateur }}</p>
-  <p class="meta"><strong>Acteurs :</strong> {{ episode.casting.join(', ') }}</p>
+    <img class="poster" [src]="episode.affiche" [alt]="episode.titre" />
 
-  <div class="like-zone">
-    <button type="button" (click)="toggleLike()">
-      {{ liked ? 'Unlike' : 'Like' }}
+    <p class="synopsis">{{ episode.synopsis }}</p>
+
+    <p class="meta"><strong>Réalisateur :</strong> {{ episode.realisateur }}</p>
+    <p class="meta"><strong>Acteurs :</strong> {{ episode.casting.join(', ') }}</p>
+
+    <button type="button" class="like-btn" (click)="toggleLike()">
+      {{ episode.liked ? 'Unlike' : 'Like' }} · {{ likes }}
     </button>
-
-    <span class="likes">👍 {{ likes }}</span>
   </div>
+    </div>
+</ng-container>
 
-  <button (click)="goBack()">Back</button>
-</div>
+<ng-template #notFound>
+  <p>Épisode introuvable.</p>
+  <a routerLink="/episodes">Retour à la liste</a>
+</ng-template>

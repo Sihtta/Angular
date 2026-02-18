@@ -51,3 +51,76 @@ button {
 .likes {
   font-size: 12px;
 }
+
+.likedCard {
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+  transform: scale(1.02);
+  transition: 0.2s ease;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid #999;
+}
+
+.dot.full {
+  background: gold;
+  border-color: #caa200;
+}
+
+.dot.half {
+  background: linear-gradient(to right, gold 50%, #2c2c2c 50%);
+  border-color: #777;
+}
+
+.dot.empty {
+  background: #2c2c2c;
+  border-color: #777;
+}
+
+.likedCard {
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+  transform: scale(1.02);
+  transition: 0.2s ease;
+}
+
+
+.movie-card {
+  position: relative; 
+}
+
+.detail-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.back-container {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-btn {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #ddd;
+}

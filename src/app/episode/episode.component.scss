@@ -95,3 +95,17 @@ button {
   transform: scale(1.02);
   transition: 0.2s ease;
 }
+
+.details-btn {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.details-btn:hover {
+  background: #ddd;
+}

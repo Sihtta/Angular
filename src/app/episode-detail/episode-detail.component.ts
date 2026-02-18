@@ -1,22 +1,21 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { EpisodesService } from '../services/episodes.service';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { EpisodesService, Episode } from '../services/episodes.service';
+import { SpectatorDotsPipe } from '../spectator-dots.pipe';
 
 @Component({
   selector: 'app-episode-detail',
   standalone: true,
+  imports: [CommonModule, RouterLink, SpectatorDotsPipe],
   templateUrl: './episode-detail.component.html',
-  styleUrl: './episode-detail.component.scss'
+  styleUrl: './episode-detail.component.scss',
 })
-export class EpisodeDetailComponent {
-
-  episode: any;
-
-  liked = false;
+export class EpisodeDetailComponent implements OnInit {
+  episode?: Episode;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private episodesService: EpisodesService
   ) {}
 
@@ -26,14 +25,15 @@ export class EpisodeDetailComponent {
   }
 
   toggleLike(): void {
-    this.liked = !this.liked;
+    if (!this.episode) return;
+
+    const likeType: 'like' | 'unlike' =
+      this.episode.liked ? 'unlike' : 'like';
+
+    this.episodesService.likeEpisodeById(this.episode.id, likeType);
   }
 
   get likes(): number {
-    return this.episode.likesBase + (this.liked ? 1 : 0);
-  }
-
-  goBack(): void {
-    this.router.navigate(['/episodes']);
+    return this.episode ? this.episodesService.getLikesById(this.episode.id) : 0;
   }
 }
