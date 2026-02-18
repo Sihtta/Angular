@@ -1,0 +1,34 @@
+<div class="movie-card" [ngClass]="{ likedCard: liked }">
+  <h2 class="title">{{ titre | uppercase }}</h2>
+
+  <p class="infos">
+    {{ annee | date:'yyyy' }} · {{ duree }} ·
+    Note IMDb : {{ note | number:'1.1-1' }}/10 ·
+
+    <ng-container *ngIf="userNote !== undefined">
+      Note spectateurs :
+      <span class="dots">
+        <span
+          class="dot"
+          *ngFor="let d of (userNote | spectatorDots:5)"
+          [ngClass]="d"
+        ></span>
+      </span>
+    </ng-container>
+  </p>
+
+  <img class="poster" [src]="affiche" [alt]="titre" />
+
+  <p class="synopsis">{{ synopsis }}</p>
+
+  <p class="meta"><strong>Réalisateur :</strong> {{ realisateur }}</p>
+  <p class="meta"><strong>Acteurs :</strong> {{ casting.join(', ') }}</p>
+
+  <div class="like-zone">
+    <button type="button" (click)="toggleLike()">
+      {{ liked ? 'Unlike' : 'Like' }}
+    </button>
+
+    <span class="likes">👍 {{ likes }}</span>
+  </div>
+</div>

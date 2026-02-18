@@ -1,0 +1,24 @@
+<div class="movie-card" *ngIf="episode">
+  <h2 class="title">{{ episode.titre }}</h2>
+
+  <p class="infos">
+    {{ episode.annee }} · {{ episode.duree }} · note IMDb : {{ episode.note }}
+  </p>
+
+  <img class="poster" [src]="episode.affiche" [alt]="episode.titre" />
+
+  <p class="synopsis">{{ episode.synopsis }}</p>
+
+  <p class="meta"><strong>Réalisateur :</strong> {{ episode.realisateur }}</p>
+  <p class="meta"><strong>Acteurs :</strong> {{ episode.casting.join(', ') }}</p>
+
+  <div class="like-zone">
+    <button type="button" (click)="toggleLike()">
+      {{ liked ? 'Unlike' : 'Like' }}
+    </button>
+
+    <span class="likes">👍 {{ likes }}</span>
+  </div>
+
+  <button (click)="goBack()">Back</button>
+</div>
