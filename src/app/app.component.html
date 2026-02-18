@@ -1,19 +1,2 @@
 <app-header></app-header>
-
-<div class="container">
-  <div class="cards">
-    <app-episode
-      *ngFor="let ep of episodesFiltrees"
-      [titre]="ep.titre"
-      [annee]="ep.annee"
-      [duree]="ep.duree"
-      [note]="ep.note"
-      [synopsis]="ep.synopsis"
-      [realisateur]="ep.realisateur"
-      [casting]="ep.casting"
-      [affiche]="ep.affiche"
-      [likesBase]="ep.likesBase"
-      [userNote]="ep.userNote"
-    ></app-episode>
-  </div>
-</div>
+<app-episode-list></app-episode-list>

@@ -1,34 +1,25 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpectatorDotsPipe } from '../spectator-dots.pipe';
+import { EpisodesService, Episode } from '../services/episodes.service';
 
 @Component({
   selector: 'app-episode',
   standalone: true,
   imports: [CommonModule, SpectatorDotsPipe],
   templateUrl: './episode.component.html',
-  styleUrl: './episode.component.scss'
+  styleUrl: './episode.component.scss',
 })
 export class EpisodeComponent {
-  @Input() titre!: string;
-  @Input() annee!: Date;            
-  @Input() duree!: string;
-  @Input() note!: string;
-  @Input() synopsis!: string;
-  @Input() realisateur!: string;
-  @Input() casting!: string[];
-  @Input() affiche!: string;
+  @Input({ required: true }) episode!: Episode;
 
-  @Input() userNote?: number;
-
-  liked = false;
-  @Input() likesBase = 0;
+  constructor(private episodesService: EpisodesService) {}
 
   toggleLike(): void {
-    this.liked = !this.liked;
+    this.episodesService.likeEpisodeById(this.episode.id);
   }
 
   get likes(): number {
-    return this.likesBase + (this.liked ? 1 : 0);
+    return this.episodesService.getLikes(this.episode);
   }
 }

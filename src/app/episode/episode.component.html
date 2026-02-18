@@ -1,34 +1,27 @@
-<div class="movie-card" [ngClass]="{ likedCard: liked }">
-  <h2 class="title">{{ titre | uppercase }}</h2>
+<div class="movie-card" [ngClass]="{ likedCard: episode.liked }">
+  <h2 class="title">{{ episode.titre | uppercase }}</h2>
 
-  <p class="infos">
-    {{ annee | date:'yyyy' }} · {{ duree }} ·
-    Note IMDb : {{ note | number:'1.1-1' }}/10 ·
+  <p class="meta">
+    {{ episode.annee | date:'yyyy' }} · {{ episode.duree }} ·
+    Note IMDb : {{ episode.note | number:'1.1-1' }}/10 ·
 
-    <ng-container *ngIf="userNote !== undefined">
+    <ng-container *ngIf="episode.userNote !== undefined">
       Note spectateurs :
-      <span class="dots">
-        <span
-          class="dot"
-          *ngFor="let d of (userNote | spectatorDots:5)"
-          [ngClass]="d"
-        ></span>
-      </span>
+      <span *ngFor="let d of (episode.userNote | spectatorDots:5)">
+  {{ d === 'full' ? '🌕' : d === 'half' ? '🌓' : '🌑' }}
+</span>
+
     </ng-container>
   </p>
 
-  <img class="poster" [src]="affiche" [alt]="titre" />
+  <img class="poster" [src]="episode.affiche" [alt]="episode.titre" />
 
-  <p class="synopsis">{{ synopsis }}</p>
+  <p class="synopsis">{{ episode.synopsis }}</p>
 
-  <p class="meta"><strong>Réalisateur :</strong> {{ realisateur }}</p>
-  <p class="meta"><strong>Acteurs :</strong> {{ casting.join(', ') }}</p>
+  <p class="meta"><strong>Réalisateur :</strong> {{ episode.realisateur }}</p>
+  <p class="meta"><strong>Acteurs :</strong> {{ episode.casting.join(', ') }}</p>
 
-  <div class="like-zone">
-    <button type="button" (click)="toggleLike()">
-      {{ liked ? 'Unlike' : 'Like' }}
-    </button>
-
-    <span class="likes">👍 {{ likes }}</span>
-  </div>
+  <button type="button" class="like-btn" (click)="toggleLike()">
+    {{ episode.liked ? 'Unlike' : 'Like' }} · {{ likes }}
+  </button>
 </div>
