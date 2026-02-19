@@ -1,0 +1,87 @@
+<form [formGroup]="episodeForm" (ngSubmit)="onSubmit()" class="episode-form">
+  <h3>Nouvel Episode :</h3>
+
+  <div class="form-group">
+    <label for="titre">Titre*</label>
+    <input id="titre" type="text" formControlName="titre" />
+  </div>
+
+  <div class="form-group">
+    <label for="date">Date*</label>
+    <input id="date" type="date" formControlName="date" />
+  </div>
+
+  <div class="form-group">
+    <label for="duree">Durée (en min)*</label>
+    <input id="duree" type="number" formControlName="duree" />
+  </div>
+
+  <div class="form-group">
+    <label for="note">Note IMDb</label>
+    <input id="note" type="number" step="0.1" formControlName="note" />
+  </div>
+
+  <div class="form-group">
+    <label for="synopsis">Synopsis*</label>
+    <input id="synopsis" type="text" formControlName="synopsis" />
+  </div>
+
+  <div class="form-group">
+    <label for="realisateur">Réalisateur*</label>
+    <input id="realisateur" type="text" formControlName="realisateur" />
+  </div>
+
+  <div class="form-group">
+    <label for="acteur1">Acteur 1*</label>
+    <input id="acteur1" type="text" formControlName="acteur1" />
+  </div>
+
+  <div class="form-group">
+    <label for="acteur2">Acteur 2</label>
+    <input id="acteur2" type="text" formControlName="acteur2" />
+  </div>
+
+  <div class="form-group">
+    <label for="acteur3">Acteur 3</label>
+    <input id="acteur3" type="text" formControlName="acteur3" />
+  </div>
+
+  <div class="form-group">
+    <label for="url">URL de l'affiche*</label>
+    <input id="url" type="text" formControlName="url" />
+  </div>
+
+  @if (episodeForm.invalid && episodeForm.touched) {
+   <div class="help-block">
+     <span>Un champ obligatoire n'est pas complété</span>
+   </div>
+  }
+
+  <button type="submit" [disabled]="episodeForm.invalid">
+    Enregistrer
+  </button>
+</form>
+
+<hr>
+
+<h3>Aperçu :</h3>
+
+<div class="preview-card">
+  <h4>{{ previewEpisode.titre }}</h4>
+  <p>{{ previewEpisode.date }}</p>
+  <p>{{ previewEpisode.duree }} min</p>
+  <img *ngIf="previewEpisode.url" [src]="previewEpisode.url" width="150" />
+  <p>{{ previewEpisode.synopsis }}</p>
+  <p>Réalisé par {{ previewEpisode.realisateur }}</p>
+  <p>
+    {{ previewEpisode.acteur1 }}
+
+    @if (previewEpisode.acteur2) {
+      , {{ previewEpisode.acteur2 }}
+    }
+
+    @if (previewEpisode.acteur3) {
+      , {{ previewEpisode.acteur3 }}
+    }
+  </p>
+</div>

@@ -96,4 +96,16 @@ export class EpisodesService {
     return episode.likesBase + (episode.liked ? 1 : 0);
   }
 
+  private generateId(): number {
+    return this.episodes.length > 0
+      ? Math.max(...this.episodes.map(e => e.id)) + 1
+      : 1;
+  }
+
+  addEpisode(newEpisode: Episode): void {
+    newEpisode.id = this.generateId();
+    newEpisode.likesBase = 0;
+    newEpisode.liked = false;
+    this.episodes.push(newEpisode);
+  }
 }

@@ -9,4 +9,15 @@
   <button type="button" (click)="goToEpisodes()">
     Continuer vers une galaxie très très lointaine...
   </button>
+
+  <form #newsletterForm="ngForm" (ngSubmit)="onSubmit()">
+    <p>Inscrivez vous pour recevoir notre newsletter !</p>
+      <div class="field-wrapper">
+        <input type="email" name="email" [(ngModel)]="email" #userMail="ngModel" required/> 
+        <div [hidden]="userMail.valid || userMail.pristine" class="help-block">
+          <span>Ce champ est obligatoire</span>
+        </div>
+        <button type="submit" [disabled]="newsletterForm.invalid"> Ok </button>
+      </div>
+  </form>
 </div>

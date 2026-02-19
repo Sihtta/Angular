@@ -13,7 +13,27 @@
 }
 
 button {
-  padding: 12px 24px;
+  padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
 }
+
+button[type="submit"] {
+  padding: 6px 12px;
+  margin-left: 10px;
+}
+
+.field-wrapper {
+  position: relative;
+  padding-bottom: 18px; 
+}
+
+.help-block {
+  position: absolute;
+  left: 0;
+  bottom: 0;           
+  font-size: 12px;
+  color: red;
+}
+
+
