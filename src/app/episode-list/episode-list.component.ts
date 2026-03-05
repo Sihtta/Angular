@@ -14,6 +14,15 @@ export class EpisodeListComponent {
   episodes: Episode[] = [];
 
   constructor(private episodesService: EpisodesService) {
+    this.refresh();
+  }
+
+  onDelete(id: number) {
+    this.episodesService.deleteEpisodeById(id);
+    this.refresh();
+  }
+
+  private refresh() {
     this.episodes = this.episodesService
       .getAllEpisodes()
       .filter(e => Number(e.note) > 8.5);

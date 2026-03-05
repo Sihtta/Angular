@@ -108,4 +108,8 @@ export class EpisodesService {
     newEpisode.liked = false;
     this.episodes.push(newEpisode);
   }
+
+  deleteEpisodeById(id: number): void {
+    this.episodes = this.episodes.filter(e => e.id !== id);
+  }
 }

@@ -1,3 +1,3 @@
 <div class="episodes-container">
-  <app-episode *ngFor="let ep of episodes" [episode]="ep"></app-episode>
+  <app-episode *ngFor="let ep of episodes" [episode]="ep" (delete)="onDelete($event)"></app-episode>
 </div>
